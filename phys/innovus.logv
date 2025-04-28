@@ -1,0 +1,211 @@
+[05/09 15:36:01      0s] 
+[05/09 15:36:01      0s] Cadence Innovus(TM) Implementation System.
+[05/09 15:36:01      0s] Copyright 2021 Cadence Design Systems, Inc. All rights reserved worldwide.
+[05/09 15:36:01      0s] 
+[05/09 15:36:01      0s] Version:	v21.18-s099_1, built Tue Jul 18 13:03:50 PDT 2023
+[05/09 15:36:01      0s] Options:	
+[05/09 15:36:01      0s] Date:		Thu May  9 15:36:01 2024
+[05/09 15:36:01      0s] Host:		student04 (x86_64 w/Linux 3.10.0-1160.62.1.el7.x86_64) (8cores*32cpus*Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz 20480KB)
+[05/09 15:36:01      0s] OS:		Red Hat Enterprise Linux
+[05/09 15:36:01      0s] 
+[05/09 15:36:01      0s] License:
+[05/09 15:36:01      0s] 		[15:36:01.417665] Configured Lic search path (21.01-s002): /escnfs/home/csesoft/cadence/installs/license.txt
+
+[05/09 15:36:01      0s] 		invs	Innovus Implementation System	21.1	checkout succeeded
+[05/09 15:36:01      0s] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[05/09 15:36:20     15s] Reset Parastics called with the command setExtractRCMode -reset@(#)CDS: Innovus v21.18-s099_1 (64bit) 07/18/2023 13:03 (Linux 3.10.0-693.el7.x86_64)
+[05/09 15:36:23     18s] @(#)CDS: NanoRoute 21.18-s099_1 NR230707-1955/21_18-UB (database version 18.20.605) {superthreading v2.17}
+[05/09 15:36:23     18s] @(#)CDS: AAE 21.18-s017 (64bit) 07/18/2023 (Linux 3.10.0-693.el7.x86_64)
+[05/09 15:36:23     18s] @(#)CDS: CTE 21.18-s022_1 () Jul 11 2023 23:10:24 ( )
+[05/09 15:36:23     18s] @(#)CDS: SYNTECH 21.18-s010_1 () Jul  5 2023 06:32:03 ( )
+[05/09 15:36:23     18s] @(#)CDS: CPE v21.18-s053
+[05/09 15:36:23     18s] @(#)CDS: IQuantus/TQuantus 21.1.1-s966 (64bit) Wed Mar 8 10:22:20 PST 2023 (Linux 3.10.0-693.el7.x86_64)
+[05/09 15:36:23     18s] @(#)CDS: OA 22.60-p087 Thu Feb  9 09:35:26 2023
+[05/09 15:36:23     18s] @(#)CDS: SGN 20.10-d001 (01-Jun-2020) (64 bit executable, Qt5.9.0)
+[05/09 15:36:23     18s] @(#)CDS: RCDB 11.15.0
+[05/09 15:36:23     18s] @(#)CDS: STYLUS 21.12-s019_1 (12/20/2022 05:13 PST)
+[05/09 15:36:23     18s] @(#)CDS: SystemPlanner-21.18-10439 (21.18) (2023-03-01 15:40:03+0800)
+[05/09 15:36:23     18s] Create and set the environment variable TMPDIR to /tmp/innovus_temp_893_student04_sjoshi2_rJouDx.
+
+[05/09 15:36:23     18s] Change the soft stacksize limit to 0.2%RAM (63 mbytes). Set global soft_stack_size_limit to change the value.
+[05/09 15:36:26     20s] 
+[05/09 15:36:26     20s] **INFO:  MMMC transition support version v31-84 
+[05/09 15:36:26     20s] 
+[05/09 15:36:26     20s] <CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+[05/09 15:36:26     20s] <CMD> suppressMessage ENCEXT-2799
+[05/09 15:36:26     20s] <CMD> getVersion
+[05/09 15:36:27     21s] [INFO] Loading PVS 23.11 fill procedures
+[05/09 15:36:27     21s] <CMD> win
+[05/09 15:43:42    193s] can't read "TECH_MODULE_DIR": no such variable
+[05/09 15:44:19    214s] can't read "env(TECH_MODULE_DIR)": no such variable
+[05/09 15:46:52    302s] <CMD> set init_gnd_net vssx
+[05/09 15:46:52    302s] <CMD> set init_lef_file {../../intel16libs/pdk224_r0.9.2/apr/cadence/m11_1x_3xa_1xb_1xc_2yb_2ga_mim2_1gb__bumpp/6t108_tp0/p1222.lef ../../intel16libs/std_cells/base_nom/lef/lib224_b0m_6t_108pp_base_nom.lef ../../intel16libs/std_cells/seq_nom/lef/lib224_b0m_6t_108pp_seq_nom.lef ../../intel16libs/pdk224_r0.9.2/libraries/tic/lef/m11_1x_3xa_1xb_1xc_2yb_2ga_mim2_1gb__bumpp/intel22tic.lef ../../intel16libs/adf224_r0.9HP1_c/asicflows/cadence/tech.dot4.6t108.tp0/via_pillar.lef}
+[05/09 15:46:52    302s] <CMD> set init_design_settop 0
+[05/09 15:46:52    302s] <CMD> set init_verilog ../synth/riscv_stub_synth.v
+[05/09 15:46:52    302s] <CMD> set init_pwr_net vcc
+[05/09 15:46:52    302s] <CMD> init_design
+[05/09 15:46:52    302s] 
+[05/09 15:46:52    302s] Loading LEF file ../../intel16libs/pdk224_r0.9.2/apr/cadence/m11_1x_3xa_1xb_1xc_2yb_2ga_mim2_1gb__bumpp/6t108_tp0/p1222.lef ...
+[05/09 15:46:52    302s] 
+[05/09 15:46:52    302s] Loading LEF file ../../intel16libs/std_cells/base_nom/lef/lib224_b0m_6t_108pp_base_nom.lef ...
+[05/09 15:46:52    302s] Set DBUPerIGU to M1 pitch 216.
+[05/09 15:46:52    303s] 
+[05/09 15:46:52    303s] Loading LEF file ../../intel16libs/std_cells/seq_nom/lef/lib224_b0m_6t_108pp_seq_nom.lef ...
+[05/09 15:46:52    303s] 
+[05/09 15:46:52    303s] Loading LEF file ../../intel16libs/pdk224_r0.9.2/libraries/tic/lef/m11_1x_3xa_1xb_1xc_2yb_2ga_mim2_1gb__bumpp/intel22tic.lef ...
+[05/09 15:46:52    303s] 
+[05/09 15:46:52    303s] Loading LEF file ../../intel16libs/adf224_r0.9HP1_c/asicflows/cadence/tech.dot4.6t108.tp0/via_pillar.lef ...
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x8_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x8_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x8_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x8_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x8_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x8_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x8_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x8_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x4_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x4_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x4_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x4_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x4_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x4_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x4_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x4_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x12_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x12_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x12_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x12_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x12_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_8x12_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x12_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_8x12_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_4x8_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_4x8_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_4x8_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_4x8_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_4x8_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_4x8_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_4x8_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_4x8_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_4x4_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_4x4_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_4x4_er_edm_prs' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_4x4_er_edm_prs' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res1' in macro 'tic22_b841_s22_4x4_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res1' in macro 'tic22_b841_s22_4x4_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-201):	Pin 'edm_res0' in macro 'tic22_b841_s22_4x4_edm' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-201' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPLF-200):	Pin 'edm_res0' in macro 'tic22_b841_s22_4x4_edm' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+[05/09 15:46:52    303s] Type 'man IMPLF-200' for more detail.
+[05/09 15:46:52    303s] **WARN: (EMS-27):	Message (IMPLF-201) has exceeded the current message display limit of 20.
+[05/09 15:46:52    303s] To increase the message display limit, refer to the product command reference manual.
+[05/09 15:46:52    303s] **WARN: (EMS-27):	Message (IMPLF-200) has exceeded the current message display limit of 20.
+[05/09 15:46:52    303s] To increase the message display limit, refer to the product command reference manual.
+[05/09 15:46:52    303s] ##     Node: ICF           (AutoDetect)         
+[05/09 15:46:52    303s] *** End library_loading (cpu=0.00min, real=0.00min, mem=0.0M, fe_cpu=5.05min, fe_real=10.87min, fe_mem=1044.3M) ***
+[05/09 15:46:52    303s] #% Begin Load netlist data ... (date=05/09 15:46:52, mem=859.7M)
+[05/09 15:46:52    303s] *** Begin netlist parsing (mem=1044.3M) ***
+[05/09 15:46:52    303s] Created 0 new cells from 0 timing libraries.
+[05/09 15:46:52    303s] Reading netlist ...
+[05/09 15:46:52    303s] Backslashed names will retain backslash and a trailing blank character.
+[05/09 15:46:52    303s] Reading verilog netlist '../synth/riscv_stub_synth.v'
+[05/09 15:46:52    303s] 
+[05/09 15:46:52    303s] *** Memory Usage v#1 (Current mem = 1048.262M, initial mem = 486.090M) ***
+[05/09 15:46:52    303s] *** End netlist parsing (cpu=0:00:00.0, real=0:00:00.0, mem=1048.3M) ***
+[05/09 15:46:52    303s] #% End Load netlist data ... (date=05/09 15:46:52, total cpu=0:00:00.0, real=0:00:00.0, peak res=865.3M, current mem=865.3M)
+[05/09 15:46:52    303s] Top level cell is riscv_stub.
+[05/09 15:46:52    303s] Hooked 0 DB cells to tlib cells.
+[05/09 15:46:52    303s] Ending "BindLib:" (total cpu=0:00:00.0, real=0:00:00.0, peak res=867.4M, current mem=867.4M)
+[05/09 15:46:52    303s] Starting recursive module instantiation check.
+[05/09 15:46:52    303s] No recursion found.
+[05/09 15:46:52    303s] Building hierarchical netlist for Cell riscv_stub ...
+[05/09 15:46:52    303s] *** Netlist is unique.
+[05/09 15:46:52    303s] Setting Std. cell height to 1080 DBU (smallest netlist inst).
+[05/09 15:46:52    303s] ** info: there are 909 modules.
+[05/09 15:46:52    303s] ** info: there are 3698 stdCell insts.
+[05/09 15:46:52    303s] 
+[05/09 15:46:52    303s] *** Memory Usage v#1 (Current mem = 1097.688M, initial mem = 486.090M) ***
+[05/09 15:46:52    303s] **WARN: (IMPFP-3961):	The techSite 'bonuscore_6T_108pp' has no related standard cells in the LEF/OA library. The calculations for this site type cannot be made unless standard cell models of this type exist in the LEF/OA library. Ignore this warning if the SITE is not used by the library. Alternatively, remove the SITE definition for the LEF/OA library to avoid this message.
+[05/09 15:46:52    303s] Type 'man IMPFP-3961' for more detail.
+[05/09 15:46:52    303s] **WARN: (IMPFP-3961):	The techSite 'core2h_6T_108pp' has no related standard cells in the LEF/OA library. The calculations for this site type cannot be made unless standard cell models of this type exist in the LEF/OA library. Ignore this warning if the SITE is not used by the library. Alternatively, remove the SITE definition for the LEF/OA library to avoid this message.
+[05/09 15:46:52    303s] Type 'man IMPFP-3961' for more detail.
+[05/09 15:46:52    303s] 
+[05/09 15:46:52    303s] Honor LEF defined pitches for advanced node
+[05/09 15:46:52    303s] Horizontal Layer M2 offset = 90 (derived)
+[05/09 15:46:52    303s] Vertical Layer M1 offset = 0 (derived)
+[05/09 15:46:52    303s] Start create_tracks
+[05/09 15:46:52    303s] **WARN: (IMPSYT-7328):	The design has been initialized in physical-only mode because the init_mmmc_file global variable was not defined. Timing analysis will not be possible within this session. You can only use commands that do not depend on timing data. If you need to use timing, you need to restart with an init_mmmc_file to define the timing setup, or you can save this design and use restoreDesign -mmmc_file <viewDef.tcl> to add the timing setup information.
+[05/09 15:46:52    303s] Extraction setup Started 
+[05/09 15:46:52    303s] 
+[05/09 15:46:52    303s] Trim Metal Layers:
+[05/09 15:46:52    303s] 
+[05/09 15:46:52    303s] *** Summary of all messages that are not suppressed in this session:
+[05/09 15:46:52    303s] Severity  ID               Count  Summary                                  
+[05/09 15:46:52    303s] WARNING   IMPLF-200           51  Pin '%s' in macro '%s' has no ANTENNAGAT...
+[05/09 15:46:52    303s] WARNING   IMPLF-201           48  Pin '%s' in macro '%s' has no ANTENNADIF...
+[05/09 15:46:52    303s] WARNING   IMPFP-3961           2  The techSite '%s' has no related standar...
+[05/09 15:46:52    303s] WARNING   IMPSYT-7328          1  The design has been initialized in physi...
+[05/09 15:46:52    303s] *** Message Summary: 102 warning(s), 0 error(s)
+[05/09 15:46:52    303s] 
+[05/09 15:46:56    303s] <CMD> zoomBox -2.44850 2.95150 1.76400 -1.87750
+[05/09 15:46:57    304s] <CMD> zoomBox -0.31050 0.45300 0.18050 -0.10850
+[05/09 15:47:00    304s] <CMD> fit
+[05/09 15:47:23    306s] <CMD> man IMPSYT-7328
+[05/09 15:47:37    308s] <CMD> man IMPFP-3961
+[05/09 15:48:50    317s] 
+--------------------------------------------------------------------------------
+Exiting Innovus on Thu May  9 15:48:50 2024
+  Total CPU time:     0:05:18
+  Total real time:    0:12:52
+  Peak memory (main): 1156.23MB
+
+[05/09 15:48:50    317s] 
+[05/09 15:48:50    317s] *** Memory Usage v#1 (Current mem = 1355.000M, initial mem = 486.090M) ***
+[05/09 15:48:50    317s] 
+[05/09 15:48:50    317s] *** Summary of all messages that are not suppressed in this session:
+[05/09 15:48:50    317s] Severity  ID               Count  Summary                                  
+[05/09 15:48:50    317s] WARNING   IMPLF-200           51  Pin '%s' in macro '%s' has no ANTENNAGAT...
+[05/09 15:48:50    317s] WARNING   IMPLF-201           48  Pin '%s' in macro '%s' has no ANTENNADIF...
+[05/09 15:48:50    317s] WARNING   IMPFP-3961           2  The techSite '%s' has no related standar...
+[05/09 15:48:50    317s] WARNING   IMPSYT-7328          1  The design has been initialized in physi...
+[05/09 15:48:50    317s] *** Message Summary: 102 warning(s), 0 error(s)
+[05/09 15:48:50    317s] 
+[05/09 15:48:50    317s] --- Ending "Innovus" (totcpu=0:05:18, real=0:12:49, mem=1355.0M) ---

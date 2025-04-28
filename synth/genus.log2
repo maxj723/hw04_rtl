@@ -1,0 +1,24 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2023 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[09:54:03.417705] Configured Lic search path (21.01-s002): /escnfs/home/csesoft/cadence/installs/license.txt
+
+Version: 21.18-s082_1, built Tue Jul 18 10:08:41 PDT 2023
+Options: synth_step_by_step.tcl 
+Date:    Wed Apr 23 09:54:03 2025
+Host:    student04 (x86_64 w/Linux 3.10.0-1160.62.1.el7.x86_64) (8cores*32cpus*2physical cpus*Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz 20480KB) (32654732KB)
+PID:     17315
+OS:      Red Hat Enterprise Linux Server release 7.8 (Maipo)
+
+
+[09:54:03.289352] Periodic Lic check successful
+[09:54:03.289362] Feature usage summary:
+[09:54:03.289362] Genus_Synthesis
+Checking out license: Genus_Synthesis
+invalid command name "read_libs"
+    while executing
+"read_libs [list $seq_lib $base_lib]"
+    (file "synth_step_by_step.tcl" line 12)
+Abnormal exit.

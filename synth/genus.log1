@@ -1,0 +1,58 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2023 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[16:54:30.417689] Configured Lic search path (21.01-s002): /escnfs/home/csesoft/cadence/installs/license.txt
+
+Version: 21.18-s082_1, built Tue Jul 18 10:08:41 PDT 2023
+Options: 
+Date:    Mon Apr 15 16:54:30 2024
+Host:    student04 (x86_64 w/Linux 3.10.0-1160.62.1.el7.x86_64) (8cores*32cpus*2physical cpus*Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz 20480KB) (32654732KB)
+PID:     2544
+OS:      Red Hat Enterprise Linux Server release 7.8 (Maipo)
+
+
+[16:54:30.011539] Periodic Lic check successful
+[16:54:30.011545] Feature usage summary:
+[16:54:30.011546] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (15 seconds elapsed).
+
+WARNING: This version of the tool is 272 days old.
+@genus:root: 1> source synth_step_by_step.tcl
+Sourcing './synth_step_by_step.tcl' (Mon Apr 15 16:54:51 EDT 2024)...
+#@ Begin verbose source ./synth_step_by_step.tcl
+@file(synth_step_by_step.tcl) 5: set LIB_PATH ~/inte16libs
+@file(synth_step_by_step.tcl) 8: set seq_lib ${LIB_PATH}/seq_nom/lib/lib224_b0m_6t_108pp_seq_nom_tttt_1p000v_25c_tttt_ctyp_nldm.lib.gz
+@file(synth_step_by_step.tcl) 9: set base_lib ${LIB_PATH}/base_nom/lib/lib224_b0m_6t_108pp_base_nom_tttt_1p000v_25c_tttt_ctyp_nldm.lib.gz
+@file(synth_step_by_step.tcl) 12: read_libs [list $seq_lib $base_lib]
+Error   : File error. [FILE-100] [::legacy::set_attribute]
+        : Cannot open file '~/inte16libs/seq_nom/lib/lib224_b0m_6t_108pp_seq_nom_tttt_1p000v_25c_tttt_ctyp_nldm.lib.gz'
+        : Make sure that the file is a readable regular file and has the specified name.
+Error   : File error. [FILE-100] [::legacy::set_attribute]
+        : Cannot open file '~/inte16libs/base_nom/lib/lib224_b0m_6t_108pp_base_nom_tttt_1p000v_25c_tttt_ctyp_nldm.lib.gz'
+Error   : A library file does not exist. [LBR-68] [::legacy::set_attribute]
+        : File '~/inte16libs/seq_nom/lib/lib224_b0m_6t_108pp_seq_nom_tttt_1p000v_25c_tttt_ctyp_nldm.lib.gz ~/inte16libs/base_nom/lib/lib224_b0m_6t_108pp_base_nom_tttt_1p000v_25c_tttt_ctyp_nldm.lib.gz' could not be found. File '<none>' was the last file that was successfully read in.
+        : Make sure that the library file exists or check for a typo in the file name.
+Error   : The data value for this attribute is invalid. [TUI-24] [::legacy::set_attribute]
+        : The value '  { ~/inte16libs/seq_nom/lib/lib224_b0m_6t_108pp_seq_nom_tttt_1p000v_25c_tttt_ctyp_nldm.lib.gz }  { ~/inte16libs/base_nom/lib/lib224_b0m_6t_108pp_base_nom_tttt_1p000v_25c_tttt_ctyp_nldm.lib.gz } ' cannot be set for attribute 'library'.
+        : To see the usage/description for this attribute, type '::legacy::set_attribute -h <attr_name> *' (in legacy UI mode) or 'help * <attr_name> -detail' (in CUI mode).
+#@ End verbose source ./synth_step_by_step.tcl
+1
+@genus:root: 2> exit
+
+Lic Summary:
+[16:55:17.146011] Cdslmd servers: linux4-lic
+[16:55:17.146024] Feature usage summary:
+[16:55:17.146025] Genus_Synthesis
+
+Normal exit.
