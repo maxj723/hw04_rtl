@@ -2,6 +2,6 @@
 // File created by:  xrun
 // Do not modify this file
 //
-/escnfs/courses/sp25-cse-40762.01/public/hw04_rtl/src/riscv_stub.sv
-/escnfs/courses/sp25-cse-40762.01/public/hw04_rtl/tb/memories.sv
-/escnfs/courses/sp25-cse-40762.01/public/hw04_rtl/tb/riscv_stub_tb.sv
+/escnfs/home/sdoughe5/Repos/hw04_rtl/src/riscv_stub.sv
+/escnfs/home/sdoughe5/Repos/hw04_rtl/tb/memories.sv
+/escnfs/home/sdoughe5/Repos/hw04_rtl/tb/riscv_stub_tb.sv

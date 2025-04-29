@@ -1,5 +1,5 @@
 xrun(64): 23.09-s005: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s005: Started on Apr 25, 2025 at 10:39:15 EDT
+TOOL:	xrun(64)	23.09-s005: Started on Apr 29, 2025 at 18:05:50 EDT
 xrun
 	-f run.f
 		../src/riscv_stub.sv
@@ -277,4 +277,4 @@ Assertion failed: x4 should be -2
 Simulation complete via $finish(1) at time 215 NS + 0
 ../tb/riscv_stub_tb.sv:118         $finish;
 xcelium> exit
-TOOL:	xrun(64)	23.09-s005: Exiting on Apr 25, 2025 at 10:39:16 EDT  (total: 00:00:01)
+TOOL:	xrun(64)	23.09-s005: Exiting on Apr 29, 2025 at 18:05:50 EDT  (total: 00:00:00)

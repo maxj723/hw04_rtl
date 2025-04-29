@@ -72,6 +72,7 @@ module riscv_stub #(
 
     // Hazard logic
     logic [1:0] forward_A, forward_B;
+	logic [DATA_WIDTH-1:0] alu_in1, alu_in2;
 
 
     // IF stage
@@ -188,12 +189,16 @@ module riscv_stub #(
             ID_EX_reg_write <= '0;
         end else begin
             ID_EX_pc <= IF_ID_pc;
-            ID_EX_rs1_data <= reg_file[ID_EX_rs1];
-            ID_EX_rs2_data <= reg_file[ID_EX_rs2];
+
+            ID_EX_rs1_data <= reg_file[IF_ID_instr[19:15]];
+            ID_EX_rs2_data <= reg_file[IF_ID_instr[24:20]];
+
             ID_EX_imm <= imm_gen_out;
+
             ID_EX_rd <= IF_ID_instr[11:7];
             ID_EX_rs1 <= IF_ID_instr[19:15];
             ID_EX_rs2 <= IF_ID_instr[24:20];
+
             ID_EX_alu_op <= alu_op;
             ID_EX_alu_src <= alu_src;
             ID_EX_mem_read <= mem_read;
@@ -201,6 +206,7 @@ module riscv_stub #(
             ID_EX_reg_write <= reg_write;
         end
     end
+
 
     // EX stage
     logic [DATA_WIDTH-1:0] alu_result;
@@ -258,6 +264,36 @@ module riscv_stub #(
             MEM_WB_reg_write <= EX_MEM_reg_write;
         end
     end
+
+
+
+
+	//mine
+	always_comb begin
+        forward_A = 2'b00;
+        forward_B = 2'b00;
+
+        if (EX_MEM_reg_write
+            && EX_MEM_rd != 5'd0
+            && EX_MEM_rd == ID_EX_rs1)
+            forward_A = 2'b10;
+        if (EX_MEM_reg_write
+            && EX_MEM_rd != 5'd0
+            && EX_MEM_rd == ID_EX_rs2)
+            forward_B = 2'b10;
+
+        if (MEM_WB_reg_write
+            && MEM_WB_rd != 5'd0
+            && MEM_WB_rd == ID_EX_rs1
+            && forward_A == 2'b00)
+            forward_A = 2'b01;
+        if (MEM_WB_reg_write
+            && MEM_WB_rd != 5'd0
+            && MEM_WB_rd == ID_EX_rs2
+            && forward_B == 2'b00)
+            forward_B = 2'b01;
+    end
+
 
     // WB stage
     always_ff @(posedge clk or posedge reset) begin
