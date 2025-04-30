@@ -192,8 +192,8 @@ module riscv_stub #(
             ID_EX_rd <= IF_ID_instr[11:7];
             ID_EX_rs1 <= IF_ID_instr[19:15];
             ID_EX_rs2 <= IF_ID_instr[24:20];
-            ID_EX_rs1_data <= reg_file[ID_EX_rs1];
-            ID_EX_rs2_data <= reg_file[ID_EX_rs2];
+            ID_EX_rs1_data <= reg_file[IF_ID_instr[19:15]];
+            ID_EX_rs2_data <= reg_file[IF_ID_instr[24:20]];
             ID_EX_alu_op <= alu_op;
             ID_EX_alu_src <= alu_src;
             ID_EX_mem_read <= mem_read;
@@ -203,19 +203,59 @@ module riscv_stub #(
     end
 
     // EX stage
+
+    // Forwarding
+    always_comb begin
+
+        forward_A = 2'b00;
+        forward_B = 2'b00;
+
+        // rs1
+        if (EX_MEM_reg_write && (EX_MEM_rd != '0) && (EX_MEM_rd == ID_EX_rs1)) begin
+            forward_A = 2'b10;  // Forward from EX/MEM
+        end else if (MEM_WB_reg_write && (MEM_WB_rd != '0) && (MEM_WB_rd == ID_EX_rs1)) begin
+            forward_A = 2'b01;  // Forward from MEM/WB
+        end
+
+        // rs2
+        if (EX_MEM_reg_write && (EX_MEM_rd != '0) && (EX_MEM_rd == ID_EX_rs2)) begin
+            forward_B = 2'b10;  // Forward from EX/MEM
+        end else if (MEM_WB_reg_write && (MEM_WB_rd != '0) && (MEM_WB_rd == ID_EX_rs2)) begin
+            forward_B = 2'b01;  // Forward from MEM/WB
+        end
+    end
+
+    logic [DATA_WIDTH-1:0] alu_in1, alu_in2;
+
+    always_comb begin
+        case (forward_A)
+            2'b00: alu_in1 = reg_file[ID_EX_rs1];
+            2'b01: alu_in1 = MEM_WB_mem_read ? MEM_WB_mem_data : MEM_WB_alu_result;
+            2'b10: alu_in1 = EX_MEM_alu_result;
+            default: alu_in1 = reg_file[ID_EX_rs1];
+        endcase
+
+        case (forward_B)
+            2'b00: alu_in2 = reg_file[ID_EX_rs2];
+            2'b01: alu_in2 = MEM_WB_mem_read ? MEM_WB_mem_data : MEM_WB_alu_result;
+            2'b10: alu_in2 = EX_MEM_alu_result;
+            default: alu_in2 = reg_file[ID_EX_rs2];
+        endcase
+    end
+
     logic [DATA_WIDTH-1:0] alu_result;
     always_comb begin
         case (ID_EX_alu_op)
-            ALU_ADD : alu_result = ID_EX_rs1_data + (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : ID_EX_rs2_data);
-            ALU_SUB : alu_result = ID_EX_rs1_data - ID_EX_rs2_data;
-            ALU_SLT : alu_result = $signed(ID_EX_rs1_data) < $signed(ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : ID_EX_rs2_data) ? 1 : 0;
-            ALU_SLTU: alu_result = ID_EX_rs1_data < (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : ID_EX_rs2_data) ? 1 : 0;
-            ALU_XOR : alu_result = ID_EX_rs1_data ^ (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : ID_EX_rs2_data);
-            ALU_OR  : alu_result = ID_EX_rs1_data | (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : ID_EX_rs2_data);
-            ALU_AND : alu_result = ID_EX_rs1_data & (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : ID_EX_rs2_data);
-            ALU_SLL : alu_result = ID_EX_rs1_data << (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm[4:0] : ID_EX_rs2_data[4:0]);
-            ALU_SRL : alu_result = ID_EX_rs1_data >> (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm[4:0] : ID_EX_rs2_data[4:0]);
-            ALU_SRA : alu_result = $signed(ID_EX_rs1_data) >>> (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm[4:0] : ID_EX_rs2_data[4:0]);
+            ALU_ADD : alu_result = alu_in1 + (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : alu_in2);
+            ALU_SUB : alu_result = alu_in1 - alu_in2;
+            ALU_SLT : alu_result = $signed(alu_in1) < $signed(ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : alu_in2) ? 1 : 0;
+            ALU_SLTU: alu_result = alu_in1 < (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : alu_in2) ? 1 : 0;
+            ALU_XOR : alu_result = alu_in1 ^ (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : alu_in2);
+            ALU_OR  : alu_result = alu_in1 | (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : alu_in2);
+            ALU_AND : alu_result = alu_in1 & (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm : alu_in2);
+            ALU_SLL : alu_result = alu_in1 << (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm[4:0] : alu_in2[4:0]);
+            ALU_SRL : alu_result = alu_in1 >> (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm[4:0] : alu_in2[4:0]);
+            ALU_SRA : alu_result = $signed(alu_in1) >>> (ID_EX_alu_src == ALU_SRC_IMM ? ID_EX_imm[4:0] : alu_in2[4:0]);
             default: alu_result = '0;
         endcase
     end
@@ -266,7 +306,7 @@ module riscv_stub #(
         if (reset) begin
             for (int i=0; i<32; i++)
             reg_file[i] <= '0;
-        end else if (MEM_WB_reg_write) begin
+        end else if (MEM_WB_reg_write && MEM_WB_rd != '0) begin
             reg_file[MEM_WB_rd] <= MEM_WB_mem_read ? MEM_WB_mem_data : MEM_WB_alu_result;
         end
     end
