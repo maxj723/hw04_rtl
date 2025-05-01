@@ -6,8 +6,9 @@
 ./xcelium.d/run.lnx8664.23.09.d
 -RUNMODE
 ../src/riscv_stub.sv
-../tb/memories.sv
-../tb/riscv_stub_tb.sv
+../tb/riscv_stub_tb2.sv
+../tb/data_mem.sv
+../tb/instr_mem.sv
 -CDSLIB
 ./xcelium.d/run.lnx8664.23.09.d/cdsrun.lib
 -HDLVAR

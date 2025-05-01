@@ -1,280 +1,39 @@
 xrun(64): 23.09-s005: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s005: Started on Apr 29, 2025 at 18:05:50 EDT
+TOOL:	xrun(64)	23.09-s005: Started on May 01, 2025 at 18:21:45 EDT
 xrun
 	-f run.f
 		../src/riscv_stub.sv
-		../tb/memories.sv
-		../tb/riscv_stub_tb.sv
-		-top riscv_stub_tb
-	-R
-xrun: *W,CSSF: -TOP with -R option will be ignored.
-xrun: *W,CSSF: HDL source files with -R option will be ignored.
-Loading snapshot worklib.riscv_stub_tb:sv .................... Done
-xcelium> source /escnfs/home/csesoft/cadence/installs/XCELIUM2309/tools/xcelium/files/xmsimrc
-xcelium> run
-Cycle           0:
-IF Stage:
-  PC: 00000028
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Cycle           1:
-IF Stage:
-  PC: 0000002c
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Cycle           2:
-IF Stage:
-  PC: 00000030
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Cycle           3:
-IF Stage:
-  PC: 00000034
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Cycle           4:
-IF Stage:
-  PC: 00000038
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Cycle           5:
-IF Stage:
-  PC: 0000003c
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Cycle           6:
-IF Stage:
-  PC: 00000040
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Cycle           7:
-IF Stage:
-  PC: 00000044
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Cycle           8:
-IF Stage:
-  PC: 00000048
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Cycle           9:
-IF Stage:
-  PC: 0000004c
-  Instruction: 00000000
-ID Stage:
-  Opcode: 0000000
-  Rs1 Address:  0
-  Rs2 Address:  0
-  Rd Address:  0
-  Immediate: 00000000
-EX Stage:
-  ALU Operation: 0000
-  Rs1 Data: 00000000
-  Rs2 Data: 00000000
-  Immediate: 00000000
-  ALU Result: 00000000
-MEM Stage:
-  Memory Address: 00000000
-  Memory Write Data: 00000000
-  Memory Read Data: 00000000
-WB Stage:
-  Register Write Enable: 0
-  Register Write Address:  0
-  Register Write Data: 00000000
---------------------------------
-Register x1:          0
-Register x2:          0
-Register x3:          0
-Register x4:          0
-xmsim: *E,ASRTST (../tb/riscv_stub_tb.sv,112): (time 215 NS) Assertion riscv_stub_tb.__assert_1 has failed
-Assertion failed: x1 should be 1
-xmsim: *E,ASRTST (../tb/riscv_stub_tb.sv,113): (time 215 NS) Assertion riscv_stub_tb.__assert_2 has failed
-Assertion failed: x2 should be 2
-xmsim: *E,ASRTST (../tb/riscv_stub_tb.sv,114): (time 215 NS) Assertion riscv_stub_tb.__assert_3 has failed
-Assertion failed: x3 should be 3
-xmsim: *E,ASRTST (../tb/riscv_stub_tb.sv,115): (time 215 NS) Assertion riscv_stub_tb.__assert_4 has failed
-Assertion failed: x4 should be -2
-Simulation complete via $finish(1) at time 215 NS + 0
-../tb/riscv_stub_tb.sv:118         $finish;
-xcelium> exit
-TOOL:	xrun(64)	23.09-s005: Exiting on Apr 29, 2025 at 18:05:50 EDT  (total: 00:00:00)
+		../tb/riscv_stub_tb2.sv
+		../tb/data_mem.sv
+		../tb/instr_mem.sv
+		-top riscv_stub_tb2
+	-elaborate
+Recompiling... reason: file '../tb/instr_mem.sv' is newer than expected.
+	expected: Thu May  1 18:15:27 2025
+	actual:   Thu May  1 18:16:29 2025
+file: ../tb/riscv_stub_tb2.sv
+        last_pc = 'x;
+              |
+xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,74|14): 'last_pc': undeclared identifier [12.5(IEEE)].
+        same_pc_count = 0;
+                    |
+xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,75|20): 'same_pc_count': undeclared identifier [12.5(IEEE)].
+             if (dut.pc_reg == last_pc) begin
+                                     |
+xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,88|37): 'last_pc': undeclared identifier [12.5(IEEE)].
+                same_pc_count++;
+                            |
+xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,89|28): 'same_pc_count': undeclared identifier [12.5(IEEE)].
+                same_pc_count = 0;
+                            |
+xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,91|28): 'same_pc_count': undeclared identifier [12.5(IEEE)].
+             last_pc = dut.pc_reg;
+                   |
+xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,93|19): 'last_pc': undeclared identifier [12.5(IEEE)].
+             if (same_pc_count > 4) begin // PC stable for 5 cycles -> likely halted
+                             |
+xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,95|29): 'same_pc_count': undeclared identifier [12.5(IEEE)].
+	module worklib.riscv_stub_tb2:sv
+		errors: 7, warnings: 0
+xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
+TOOL:	xrun(64)	23.09-s005: Exiting on May 01, 2025 at 18:21:45 EDT  (total: 00:00:00)

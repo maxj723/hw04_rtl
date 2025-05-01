@@ -3,5 +3,6 @@
 // Do not modify this file
 //
 /escnfs/home/sdoughe5/Repos/hw04_rtl/src/riscv_stub.sv
-/escnfs/home/sdoughe5/Repos/hw04_rtl/tb/memories.sv
-/escnfs/home/sdoughe5/Repos/hw04_rtl/tb/riscv_stub_tb.sv
+/escnfs/home/sdoughe5/Repos/hw04_rtl/tb/riscv_stub_tb2.sv
+/escnfs/home/sdoughe5/Repos/hw04_rtl/tb/data_mem.sv
+/escnfs/home/sdoughe5/Repos/hw04_rtl/tb/instr_mem.sv

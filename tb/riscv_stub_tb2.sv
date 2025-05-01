@@ -71,8 +71,8 @@ module riscv_stub_tb2;
         // 2. Run simulation until timeout or halt condition
         //    (A simple halt is an infinite loop like 'j halt')
         //    We detect halt by seeing PC not change for a few cycles
-        logic [DATA_WIDTH-1:0] last_pc = 'x;
-        int same_pc_count = 0;
+        last_pc = 'x;
+        same_pc_count = 0;
         for (int i = 0; i < TIMEOUT_CYCLES; i++) begin
             @(posedge clk);
 

@@ -4,7 +4,7 @@
 //
 -no_analogsolver
 -MESSAGES
-riscv_stub_tb
+riscv_stub_tb2
 -XLMODE
 ./xcelium.d/run.lnx8664.23.09.d
 -RUNMODE
