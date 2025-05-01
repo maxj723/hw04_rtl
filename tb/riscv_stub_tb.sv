@@ -60,7 +60,7 @@ module riscv_stub_tb;
         reset = 1'b1;
         #20;
         reset = 1'b0;
-        #100;
+        // #100;
         // Run the test for a certain number of cycles
         for (int i = 0; i < 10; i++) begin
             @(posedge clk);

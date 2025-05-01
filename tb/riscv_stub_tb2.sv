@@ -36,7 +36,6 @@ module riscv_stub_tb2;
         .rdata(data_rdata)
     );
 
-
     // Instantiate the riscv_stub module
     riscv_stub #(
         .DATA_WIDTH(DATA_WIDTH)
@@ -57,6 +56,10 @@ module riscv_stub_tb2;
         forever #5 clk = ~clk; // 10ns period
     end
 
+    // Declaring stuff
+    logic [DATA_WIDTH-1:0] last_pc;
+    int same_pc_count;
+
     // Test scenario
     initial begin
         $display("Starting RISC-V Testbench...");
@@ -71,8 +74,8 @@ module riscv_stub_tb2;
         // 2. Run simulation until timeout or halt condition
         //    (A simple halt is an infinite loop like 'j halt')
         //    We detect halt by seeing PC not change for a few cycles
-        logic [DATA_WIDTH-1:0] last_pc = 'x;
-        int same_pc_count = 0;
+        last_pc = 'x;
+        same_pc_count = 0;
         for (int i = 0; i < TIMEOUT_CYCLES; i++) begin
             @(posedge clk);
 
@@ -116,7 +119,7 @@ module riscv_stub_tb2;
 
         // --- ASSERTION SECTION ---
         // === Assertions for test_alu.hex ===
-        /*
+        
         assert(dut.reg_file[1] == 5) else $error("Assertion failed: x1 should be 5");
         assert(dut.reg_file[2] == 10) else $error("Assertion failed: x2 should be 10");
         assert(dut.reg_file[3] == 15) else $error("Assertion failed: x3 should be 15");
@@ -139,7 +142,7 @@ module riscv_stub_tb2;
         assert(dut.reg_file[22] == -1) else $error("Assertion failed: x22 should be -1 (srai)");
         assert(dut.reg_file[23] == -1) else $error("Assertion failed: x23 should be -1 (sra)");
         assert(dut.reg_file[0] == 0) else $error("Assertion failed: x0 should always be 0"); // Check x0
-        */
+        
 
         // === Assertions for test_mem.hex ===
         /*
@@ -199,7 +202,7 @@ module riscv_stub_tb2;
     // Optional: Waveform dumping
     initial begin
         $dumpfile("wave.vcd");
-        $dumpvars(0, riscv_stub_tb); // Dump all signals in the TB and below
+        $dumpvars(0, riscv_stub_tb2); // Dump all signals in the TB and below
     end
 
 endmodule
