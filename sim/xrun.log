@@ -1,5 +1,5 @@
 xrun(64): 23.09-s005: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s005: Started on May 01, 2025 at 18:21:45 EDT
+TOOL:	xrun(64)	23.09-s005: Started on May 01, 2025 at 19:06:22 EDT
 xrun
 	-f run.f
 		../src/riscv_stub.sv
@@ -7,33 +7,34 @@ xrun
 		../tb/data_mem.sv
 		../tb/instr_mem.sv
 		-top riscv_stub_tb2
-	-elaborate
-Recompiling... reason: file '../tb/instr_mem.sv' is newer than expected.
-	expected: Thu May  1 18:15:27 2025
-	actual:   Thu May  1 18:16:29 2025
-file: ../tb/riscv_stub_tb2.sv
-        last_pc = 'x;
-              |
-xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,74|14): 'last_pc': undeclared identifier [12.5(IEEE)].
-        same_pc_count = 0;
-                    |
-xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,75|20): 'same_pc_count': undeclared identifier [12.5(IEEE)].
-             if (dut.pc_reg == last_pc) begin
-                                     |
-xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,88|37): 'last_pc': undeclared identifier [12.5(IEEE)].
-                same_pc_count++;
-                            |
-xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,89|28): 'same_pc_count': undeclared identifier [12.5(IEEE)].
-                same_pc_count = 0;
-                            |
-xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,91|28): 'same_pc_count': undeclared identifier [12.5(IEEE)].
-             last_pc = dut.pc_reg;
-                   |
-xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,93|19): 'last_pc': undeclared identifier [12.5(IEEE)].
-             if (same_pc_count > 4) begin // PC stable for 5 cycles -> likely halted
-                             |
-xmvlog: *E,UNDIDN (../tb/riscv_stub_tb2.sv,95|29): 'same_pc_count': undeclared identifier [12.5(IEEE)].
-	module worklib.riscv_stub_tb2:sv
-		errors: 7, warnings: 0
-xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
-TOOL:	xrun(64)	23.09-s005: Exiting on May 01, 2025 at 18:21:45 EDT  (total: 00:00:00)
+	-R
+xrun: *W,CSSF: -TOP with -R option will be ignored.
+xrun: *W,CSSF: HDL source files with -R option will be ignored.
+Loading snapshot worklib.riscv_stub_tb2:sv .................... Done
+xcelium> source /escnfs/home/csesoft/cadence/installs/XCELIUM2309/tools/xcelium/files/xmsimrc
+xcelium> run
+Loading instruction memory from test_hazard_stall.hex...
+[                  55] Cycle   3: WB: x 1 <= 0000004d
+[                  65] Cycle   4: WB: x 2 <= 00000080
+[                  65] MEM: Write 0000004d to Addr 00000080 (word   32)
+[                  85] Cycle   6: WB: x 3 <= 00000080
+[                 105] Cycle   8: WB: x 4 <= 0000004e
+xmsim: *E,ERRSEV (../tb/riscv_stub_tb2.sv,104): (time 5015 NS).
+riscv_stub_tb2.unmblk1
+TIMEOUT: Simulation reached         500 cycles without halting.
+
+Final Register State:
+  x00: 00000000  x01: 0000004d  x02: 00000080  x03: 0000004d
+  x04: 0000004e  x05: 00000000  x06: 00000000  x07: 00000000
+  x08: 00000000  x09: 00000000  x10: 00000000  x11: 00000000
+  x12: 00000000  x13: 00000000  x14: 00000000  x15: 00000000
+  x16: 00000000  x17: 00000000  x18: 00000000  x19: 00000000
+  x20: 00000000  x21: 00000000  x22: 00000000  x23: 00000000
+  x24: 00000000  x25: 00000000  x26: 00000000  x27: 00000000
+  x28: 00000000  x29: 00000000  x30: 00000000  x31: 00000000
+Final PC: 000007cc
+Simulation finished.
+Simulation complete via $finish(1) at time 5015 NS + 0
+../tb/riscv_stub_tb2.sv:199         $finish;
+xcelium> exit
+TOOL:	xrun(64)	23.09-s005: Exiting on May 01, 2025 at 19:06:23 EDT  (total: 00:00:01)

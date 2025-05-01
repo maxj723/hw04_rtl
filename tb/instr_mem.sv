@@ -17,8 +17,8 @@ module instr_mem #(
         end
         // Load program from hex file (students will create/provide this)
         // Use a conditional generate or parameter if needed for different tests
-        $display("Loading instruction memory from program.hex...");
-        $readmemh("../tb/test_alu.hex", mem); // Expect program.hex in sim directory
+        $display("Loading instruction memory from test_hazard_stall.hex...");
+        $readmemh("../tb/test_hazard_stall.hex", mem); // Expect program.hex in sim directory
     end
 
     // Combinational read (instruction memory is often modeled this way)

@@ -73,6 +73,7 @@ module riscv_stub #(
     // Hazard logic
     logic [1:0] forward_A, forward_B;
     logic load_use_hazard; //S
+    logic [DATA_WIDTH-1:0] rs2_forwarded;
 
     always_comb begin //S
         load_use_hazard = ID_EX_mem_read                          // previous is load
@@ -271,6 +272,16 @@ module riscv_stub #(
         endcase
     end
 
+    always_comb begin
+        case (forward_B)
+            2'b00: rs2_forwarded = ID_EX_rs2_data;
+            2'b01: rs2_forwarded = MEM_WB_mem_read ? MEM_WB_mem_data : MEM_WB_alu_result;
+            2'b10: rs2_forwarded = EX_MEM_alu_result;
+            default: rs2_forwarded = ID_EX_rs2_data;
+        endcase
+    end
+
+
     // EX/MEM pipeline register
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
@@ -282,7 +293,7 @@ module riscv_stub #(
             EX_MEM_reg_write <= '0;
         end else begin
             EX_MEM_alu_result <= alu_result;
-            EX_MEM_rs2_data <= ID_EX_rs2_data;
+            EX_MEM_rs2_data <= rs2_forwarded;
             EX_MEM_rd <= ID_EX_rd;
             EX_MEM_mem_read <= ID_EX_mem_read;
             EX_MEM_mem_write <= ID_EX_mem_write;

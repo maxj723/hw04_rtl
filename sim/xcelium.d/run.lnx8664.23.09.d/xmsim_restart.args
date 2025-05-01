@@ -6,7 +6,7 @@
 +EMGRLOG
 xrun.log
 -XLSTIME
-1746137737
+1746140780
 -XLKEEP
 -XLMODE
 ./xcelium.d/run.lnx8664.23.09.d
@@ -20,4 +20,4 @@ xrun
 -XLVERSION
 "TOOL:	xrun(64)	23.09-s005"
 -XLNAME
-./xcelium.d/run.lnx8664.23.09.d/student06.cse.nd.edu_c33de596-6354-4632-a356-51da7fe611ea
+./xcelium.d/run.lnx8664.23.09.d/student06.cse.nd.edu_fc7e9f8c-6675-411b-9fe3-7c2921576730

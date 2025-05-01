@@ -15,6 +15,9 @@ module riscv_stub_tb2;
     logic [DATA_WIDTH-1:0] data_rdata;
     logic data_we;
 
+    logic [DATA_WIDTH-1:0] last_pc = 'x;
+    int same_pc_count = 0;
+
     // Instantiate instruction memory
     instr_mem #(
         .DATA_WIDTH(DATA_WIDTH)
@@ -59,20 +62,20 @@ module riscv_stub_tb2;
 
     // Test scenario
     initial begin
-        $display("Starting RISC-V Testbench...");
+    
+        //$display("Starting RISC-V Testbench...");
 
         // 1. Reset the processor
         reset = 1'b1;
         @(posedge clk);
         @(posedge clk);
         reset = 1'b0;
-        $display("Reset released.");
+        //$display("Reset released.");
 
         // 2. Run simulation until timeout or halt condition
         //    (A simple halt is an infinite loop like 'j halt')
         //    We detect halt by seeing PC not change for a few cycles
-        last_pc = 'x;
-        same_pc_count = 0;
+        
         for (int i = 0; i < TIMEOUT_CYCLES; i++) begin
             @(posedge clk);
 
@@ -168,7 +171,7 @@ module riscv_stub_tb2;
         */
 
         // === Assertions for test_hazard_stall.hex ===
-        /*
+        
         assert(dut.reg_file[1] == 77) else $error("Assertion failed: x1 should be 77");
         assert(dut.reg_file[2] == 128) else $error("Assertion failed: x2 should be 128");
         assert(dut.reg_file[3] == 77) else $error("Assertion failed: x3 should be 77 (loaded from Mem[128])");
@@ -176,7 +179,7 @@ module riscv_stub_tb2;
         assert(dut.reg_file[0] == 0) else $error("Assertion failed: x0 should always be 0");
         // Check memory directly
         // assert(tb.dmem.mem[128/4] == 77) else $error("Assertion failed: Mem[128] should be 77");
-        */
+        
 
         // === Assertions for test_jal.hex ===
         /*
@@ -197,9 +200,9 @@ module riscv_stub_tb2;
     end
 
     // Optional: Waveform dumping
-    initial begin
-        $dumpfile("wave.vcd");
-        $dumpvars(0, riscv_stub_tb); // Dump all signals in the TB and below
-    end
+    //initial begin
+    //    $dumpfile("wave.vcd");
+    //    $dumpvars(0, riscv_stub_tb); // Dump all signals in the TB and below
+    //end
 
 endmodule
