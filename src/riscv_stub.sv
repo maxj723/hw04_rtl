@@ -242,46 +242,6 @@ module riscv_stub #(
     end
 
     // EX stage
-
-    // Forwarding
-    always_comb begin
-
-        forward_A = 2'b00;
-        forward_B = 2'b00;
-
-        // rs1
-        if (EX_MEM_reg_write && (EX_MEM_rd != '0) && (EX_MEM_rd == ID_EX_rs1)) begin
-            forward_A = 2'b10;  // Forward from EX/MEM
-        end else if (MEM_WB_reg_write && (MEM_WB_rd != '0) && (MEM_WB_rd == ID_EX_rs1)) begin
-            forward_A = 2'b01;  // Forward from MEM/WB
-        end
-
-        // rs2
-        if (EX_MEM_reg_write && (EX_MEM_rd != '0) && (EX_MEM_rd == ID_EX_rs2)) begin
-            forward_B = 2'b10;  // Forward from EX/MEM
-        end else if (MEM_WB_reg_write && (MEM_WB_rd != '0) && (MEM_WB_rd == ID_EX_rs2)) begin
-            forward_B = 2'b01;  // Forward from MEM/WB
-        end
-    end
-
-    logic [DATA_WIDTH-1:0] alu_in1, alu_in2;
-
-    always_comb begin
-        case (forward_A)
-            2'b00: alu_in1 = reg_file[ID_EX_rs1];
-            2'b01: alu_in1 = MEM_WB_mem_read ? MEM_WB_mem_data : MEM_WB_alu_result;
-            2'b10: alu_in1 = EX_MEM_alu_result;
-            default: alu_in1 = reg_file[ID_EX_rs1];
-        endcase
-
-        case (forward_B)
-            2'b00: alu_in2 = reg_file[ID_EX_rs2];
-            2'b01: alu_in2 = MEM_WB_mem_read ? MEM_WB_mem_data : MEM_WB_alu_result;
-            2'b10: alu_in2 = EX_MEM_alu_result;
-            default: alu_in2 = reg_file[ID_EX_rs2];
-        endcase
-    end
-
     logic [DATA_WIDTH-1:0] alu_result;
     always_comb begin
         case (ID_EX_alu_op)
