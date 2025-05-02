@@ -120,6 +120,7 @@ module riscv_stub_tb2;
         // --- ASSERTION SECTION ---
         // === Assertions for test_alu.hex ===
         
+        /*
         assert(dut.reg_file[1] == 5) else $error("Assertion failed: x1 should be 5");
         assert(dut.reg_file[2] == 10) else $error("Assertion failed: x2 should be 10");
         assert(dut.reg_file[3] == 15) else $error("Assertion failed: x3 should be 15");
@@ -142,7 +143,7 @@ module riscv_stub_tb2;
         assert(dut.reg_file[22] == -1) else $error("Assertion failed: x22 should be -1 (srai)");
         assert(dut.reg_file[23] == -1) else $error("Assertion failed: x23 should be -1 (sra)");
         assert(dut.reg_file[0] == 0) else $error("Assertion failed: x0 should always be 0"); // Check x0
-        
+        */
 
         // === Assertions for test_mem.hex ===
         /*
@@ -154,8 +155,8 @@ module riscv_stub_tb2;
         assert(dut.reg_file[6] == 0) else $error("Assertion failed: x6 should be 0 (testing x0 read)");
         assert(dut.reg_file[0] == 0) else $error("Assertion failed: x0 should always be 0 (even after lw x0,...)");
         // Check memory directly (more robust) - student might need help with TB hierachy path
-        // assert(tb.dmem.mem[256/4] == 42) else $error("Assertion failed: Mem[256] should be 42");
-        // assert(tb.dmem.mem[260/4] == -1) else $error("Assertion failed: Mem[260] should be -1");
+        assert(dmem.mem[256/4] == 42) else $error("Assertion failed: Mem[256] should be 42");
+        assert(dmem.mem[260/4] == -1) else $error("Assertion failed: Mem[260] should be -1");
         */
 
         // === Assertions for test_hazard_fwd.hex ===
@@ -171,15 +172,15 @@ module riscv_stub_tb2;
         */
 
         // === Assertions for test_hazard_stall.hex ===
-        /*
+        
         assert(dut.reg_file[1] == 77) else $error("Assertion failed: x1 should be 77");
         assert(dut.reg_file[2] == 128) else $error("Assertion failed: x2 should be 128");
         assert(dut.reg_file[3] == 77) else $error("Assertion failed: x3 should be 77 (loaded from Mem[128])");
         assert(dut.reg_file[4] == 78) else $error("Assertion failed: x4 should be 78 (77+1, requires stall + MEM->EX fwd)");
         assert(dut.reg_file[0] == 0) else $error("Assertion failed: x0 should always be 0");
         // Check memory directly
-        // assert(tb.dmem.mem[128/4] == 77) else $error("Assertion failed: Mem[128] should be 77");
-        */
+        assert(dmem.mem[128/4] == 77) else $error("Assertion failed: Mem[128] should be 77");
+        
 
         // === Assertions for test_jal.hex ===
         /*

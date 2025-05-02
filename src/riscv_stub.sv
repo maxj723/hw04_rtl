@@ -57,6 +57,8 @@ module riscv_stub #(
     logic [DATA_WIDTH-1:0] MEM_WB_alu_result, MEM_WB_mem_data;
     logic [4:0] MEM_WB_rd;
     logic MEM_WB_reg_write, MEM_WB_mem_read;
+    logic [DATA_WIDTH-1:0] ID_EX_pc4, EX_MEM_pc4, MEM_WB_pc4;   // Declaring pc pipeline register
+    logic ID_EX_jump, EX_MEM_jump, MEM_WB_jump;     // Declaring jump pipeline registers
 
     // Register file
     logic [DATA_WIDTH-1:0] reg_file [31:0];
@@ -69,9 +71,24 @@ module riscv_stub #(
     alu_src_b_t alu_src;
     logic mem_read, mem_write, reg_write;
     logic [DATA_WIDTH-1:0] imm_gen_out;
+    logic jump;
 
     // Hazard logic
     logic [1:0] forward_A, forward_B;
+    logic load_use_hazard; //S
+    logic [DATA_WIDTH-1:0] rs2_forwarded;
+
+    // Jumping logic
+    logic decode_jump;
+    logic [31:0] decode_target;
+
+    // Load Hazard
+    always_comb begin
+        load_use_hazard = ID_EX_mem_read                          // previous is load
+                        && (ID_EX_rd != 5'd0)                    // not x0
+                        && ((ID_EX_rd == IF_ID_instr[19:15])    // matches rs1 OR
+                          || (ID_EX_rd == IF_ID_instr[24:20]));  // matches rs2
+    end
 
 
     // IF stage
@@ -79,11 +96,11 @@ module riscv_stub #(
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
             pc_reg <= '0;
-        end else begin
+        end else if (!load_use_hazard) begin
             pc_reg <= pc_next;
         end
     end
-    assign pc_next = pc_reg + 4;
+    assign pc_next = decode_jump ? decode_target : pc_reg + 4;  // Mux for jump statements
     assign instr_addr = pc_reg;
 
     // IF/ID pipeline register
@@ -91,7 +108,10 @@ module riscv_stub #(
         if (reset) begin
             IF_ID_pc <= '0;
             IF_ID_instr <= '0;
-        end else begin
+        end else if (decode_jump) begin
+            IF_ID_pc <= '0;
+            IF_ID_instr <= 32'h00000013; // NOP (addi x0, x0, 0)
+        end else if (!load_use_hazard) begin
             IF_ID_pc <= pc_reg;
             IF_ID_instr <= instr_data;
         end
@@ -104,6 +124,9 @@ module riscv_stub #(
 
     // Control unit
     always_comb begin
+        // default
+        decode_jump = 1'b0;
+        decode_target = '0;
         case (opcode)
             OPCODE_OP: begin
                 alu_src = ALU_SRC_RS2;
@@ -151,6 +174,18 @@ module riscv_stub #(
                 reg_write = 1'b0;
                 alu_op = ALU_ADD;
             end
+            OPCODE_JAL: begin
+                decode_jump = 1'b1;   // Generating jump control signal
+                decode_target = IF_ID_pc
+                    + {{12{IF_ID_instr[31]}},
+                       IF_ID_instr[19:12],
+                       IF_ID_instr[20],
+                       IF_ID_instr[30:21],
+                       1'b0};
+                mem_read = 1'b0;
+                mem_write = 1'b0;
+                reg_write = 1'b0;
+            end
             default: begin
                 alu_src = ALU_SRC_RS2;
                 mem_read = 1'b0;
@@ -167,6 +202,7 @@ module riscv_stub #(
             OPCODE_OP_IMM: imm_gen_out = {{20{IF_ID_instr[31]}}, IF_ID_instr[31:20]};
             OPCODE_LOAD  : imm_gen_out = {{20{IF_ID_instr[31]}}, IF_ID_instr[31:20]};
             OPCODE_STORE : imm_gen_out = {{20{IF_ID_instr[31]}}, IF_ID_instr[31:25], IF_ID_instr[11:7]};
+            OPCODE_JAL: imm_gen_out = {{12{IF_ID_instr[31]}}, IF_ID_instr[19:12], IF_ID_instr[20], IF_ID_instr[30:21], 1'b0};    // Extract and sign extend jump immediate
             default      : imm_gen_out = '0;
         endcase
     end
@@ -186,6 +222,8 @@ module riscv_stub #(
             ID_EX_mem_read <= '0;
             ID_EX_mem_write <= '0;
             ID_EX_reg_write <= '0;
+            ID_EX_jump <= '0;
+            ID_EX_pc4 <= '0;
         end else begin
             ID_EX_pc <= IF_ID_pc;
             ID_EX_imm <= imm_gen_out;
@@ -199,6 +237,8 @@ module riscv_stub #(
             ID_EX_mem_read <= mem_read;
             ID_EX_mem_write <= mem_write;
             ID_EX_reg_write <= reg_write;
+            ID_EX_jump <= decode_jump;     // Passing jump value along
+            ID_EX_pc4 <= IF_ID_pc + 4;  // Passing PC + 4
         end
     end
 
@@ -242,6 +282,7 @@ module riscv_stub #(
     end
 
     // EX stage
+    // ALU operations
     logic [DATA_WIDTH-1:0] alu_result;
     always_comb begin
         case (ID_EX_alu_op)
@@ -259,6 +300,15 @@ module riscv_stub #(
         endcase
     end
 
+    always_comb begin
+        case (forward_B)
+            2'b00: rs2_forwarded = ID_EX_rs2_data;
+            2'b01: rs2_forwarded = MEM_WB_mem_read ? MEM_WB_mem_data : MEM_WB_alu_result;
+            2'b10: rs2_forwarded = EX_MEM_alu_result;
+            default: rs2_forwarded = ID_EX_rs2_data;
+        endcase
+    end
+
     // EX/MEM pipeline register
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
@@ -268,13 +318,17 @@ module riscv_stub #(
             EX_MEM_mem_read <= '0;
             EX_MEM_mem_write <= '0;
             EX_MEM_reg_write <= '0;
+            EX_MEM_jump <= '0;
+            EX_MEM_pc4 <= '0;
         end else begin
             EX_MEM_alu_result <= alu_result;
-            EX_MEM_rs2_data <= ID_EX_rs2_data;
+            EX_MEM_rs2_data <= rs2_forwarded;
             EX_MEM_rd <= ID_EX_rd;
             EX_MEM_mem_read <= ID_EX_mem_read;
             EX_MEM_mem_write <= ID_EX_mem_write;
             EX_MEM_reg_write <= ID_EX_reg_write;
+            EX_MEM_jump <= ID_EX_jump;  // Passing jump command along
+            EX_MEM_pc4 <= ID_EX_pc4;    // Passing PC+4
         end
     end
 
@@ -291,12 +345,16 @@ module riscv_stub #(
             MEM_WB_rd <= '0;
             MEM_WB_reg_write <= '0;
             MEM_WB_mem_read <= '0;
+            MEM_WB_jump <= '0;
+            MEM_WB_pc4 <= '0;
         end else begin
             MEM_WB_alu_result <= EX_MEM_alu_result;
             MEM_WB_mem_data <= data_rdata;
             MEM_WB_rd <= EX_MEM_rd;
             MEM_WB_reg_write <= EX_MEM_reg_write;
             MEM_WB_mem_read <= EX_MEM_mem_read;
+            MEM_WB_jump <= EX_MEM_jump; // Passing along jump
+            MEM_WB_pc4 <= EX_MEM_pc4;   // Passing PC+4
         end
     end
 
@@ -307,6 +365,8 @@ module riscv_stub #(
             reg_file[i] <= '0;
         end else if (MEM_WB_reg_write && MEM_WB_rd != '0) begin
             reg_file[MEM_WB_rd] <= MEM_WB_mem_read ? MEM_WB_mem_data : MEM_WB_alu_result;
+        end else if (MEM_WB_jump && MEM_WB_rd != '0) begin
+            reg_file[MEM_WB_rd] <= MEM_WB_pc4;   // Writing jal's PC+4 to it's rd
         end
     end
 

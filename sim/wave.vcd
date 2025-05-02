@@ -1,0 +1,43 @@
+$date
+    May  2, 2025  14:52:15
+$end
+$version
+    TOOL:	xmsim(64)	23.09-s005
+$end
+$timescale
+    1 ns
+$end
+
+$scope module riscv_stub_tb2 $end
+$var parameter 32 !    DATA_WIDTH $end
+$var parameter 32 "    TIMEOUT_CYCLES $end
+
+$scope module imem $end
+$var parameter 32 #    DATA_WIDTH $end
+$var parameter 32 $    ADDR_WIDTH $end
+$upscope $end
+
+
+$scope module dmem $end
+$var parameter 32 %    DATA_WIDTH $end
+$var parameter 32 &    ADDR_WIDTH $end
+$upscope $end
+
+
+$scope module dut $end
+$var parameter 32 '    DATA_WIDTH $end
+$upscope $end
+
+$upscope $end
+
+$enddefinitions $end
+$dumpvars
+b100000 '
+b1010 &
+b100000 %
+b1010 $
+b100000 #
+b111110100 "
+b100000 !
+$end
+#5015
