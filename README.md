@@ -5,6 +5,6 @@
 
 ❌ test_hazard_stall.hex
  
-❌ test_jal.hex
+✅ test_jal.hex
  
-❌ test_mem.hex
+✅ test_mem.hex
