@@ -172,7 +172,7 @@ module riscv_stub_tb2;
         */
 
         // === Assertions for test_hazard_stall.hex ===
-        /*
+        
         assert(dut.reg_file[1] == 77) else $error("Assertion failed: x1 should be 77");
         assert(dut.reg_file[2] == 128) else $error("Assertion failed: x2 should be 128");
         assert(dut.reg_file[3] == 77) else $error("Assertion failed: x3 should be 77 (loaded from Mem[128])");
@@ -180,10 +180,10 @@ module riscv_stub_tb2;
         assert(dut.reg_file[0] == 0) else $error("Assertion failed: x0 should always be 0");
         // Check memory directly
         // assert(tb.dmem.mem[128/4] == 77) else $error("Assertion failed: Mem[128] should be 77");
-        */
+        
 
         // === Assertions for test_jal.hex ===
-        
+        /*
         assert(dut.reg_file[1] == 8) else $error("Assertion failed: x1 (ra) should be 8 (PC+4 of JAL)");
         assert(dut.reg_file[2] == 0) else $error("Assertion failed: x2 should be 0 (flushed instruction)");
         assert(dut.reg_file[3] == 0) else $error("Assertion failed: x3 should be 0 (flushed instruction)");
@@ -193,7 +193,7 @@ module riscv_stub_tb2;
         assert(dut.reg_file[11] == 0) else $error("Assertion failed: x11 should be 0 (flushed instruction)");
         assert(dut.reg_file[0] == 0) else $error("Assertion failed: x0 should always be 0");
         assert(dut.pc_reg == 32'h1C) else $error("Assertion failed: Final PC should be at halt (0x1C)"); // Check final PC is halt addr
-        
+        */
 
         // 4. Finish
         $display("Simulation finished.");

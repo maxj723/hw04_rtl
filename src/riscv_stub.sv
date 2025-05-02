@@ -75,16 +75,28 @@ module riscv_stub #(
 
     // Hazard logic
     logic [1:0] forward_A, forward_B;
+    logic load_use_hazard; //S
+    logic [DATA_WIDTH-1:0] rs2_forwarded;
 
+    // Jumping logic
     logic decode_jump;
     logic [31:0] decode_target;
+
+    // Load Hazard
+    always_comb begin
+        load_use_hazard = ID_EX_mem_read                          // previous is load
+                        && (ID_EX_rd != 5'd0)                    // not x0
+                        && ((ID_EX_rd == IF_ID_instr[19:15])    // matches rs1 OR
+                          || (ID_EX_rd == IF_ID_instr[24:20]));  // matches rs2
+    end
+
 
     // IF stage
     logic [DATA_WIDTH-1:0] pc_reg, pc_next;
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
             pc_reg <= '0;
-        end else begin
+        end else if (!load_use_hazard) begin
             pc_reg <= pc_next;
         end
     end
@@ -99,7 +111,7 @@ module riscv_stub #(
         end else if (decode_jump) begin
             IF_ID_pc <= '0;
             IF_ID_instr <= 32'h00000013; // NOP (addi x0, x0, 0)
-        end else begin
+        end else if (!load_use_hazard) begin
             IF_ID_pc <= pc_reg;
             IF_ID_instr <= instr_data;
         end
@@ -288,6 +300,15 @@ module riscv_stub #(
         endcase
     end
 
+    always_comb begin
+        case (forward_B)
+            2'b00: rs2_forwarded = ID_EX_rs2_data;
+            2'b01: rs2_forwarded = MEM_WB_mem_read ? MEM_WB_mem_data : MEM_WB_alu_result;
+            2'b10: rs2_forwarded = EX_MEM_alu_result;
+            default: rs2_forwarded = ID_EX_rs2_data;
+        endcase
+    end
+
     // EX/MEM pipeline register
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
@@ -301,7 +322,7 @@ module riscv_stub #(
             EX_MEM_pc4 <= '0;
         end else begin
             EX_MEM_alu_result <= alu_result;
-            EX_MEM_rs2_data <= ID_EX_rs2_data;
+            EX_MEM_rs2_data <= rs2_forwarded;
             EX_MEM_rd <= ID_EX_rd;
             EX_MEM_mem_read <= ID_EX_mem_read;
             EX_MEM_mem_write <= ID_EX_mem_write;
